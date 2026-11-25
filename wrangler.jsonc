@@ -8,6 +8,19 @@
   "assets": {
     "directory": "./dist",
     "html_handling": "auto-trailing-slash",
-    "not_found_handling": "404-page"
-  }
+    "not_found_handling": "404-page",
+    "binding": "ASSETS",
+    "run_worker_first": [
+      "/api/*"
+    ]
+  },
+  "main": "worker.js",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "elite-septic-leads",
+      "database_id": "9cea5ba4-8418-4651-aa1b-0bdbecf7d2ca",
+      "migrations_dir": "migrations"
+    }
+  ]
 }
