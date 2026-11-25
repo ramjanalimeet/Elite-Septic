@@ -2,3 +2,36 @@
 /* Search is a horizontal field even though other labels stack their controls. */
 .search{flex-direction:row}
 .lead-detail{font-size:13px;line-height:1.7;background:#f5f9f7;padding:14px;border-radius:12px;white-space:pre-wrap;overflow-wrap:anywhere;margin-bottom:16px;color:#5b7471}
+/* Compact password-only sign-in, matching the supplied reference. */
+.login-shell{
+  min-height:100vh;
+  min-height:100dvh;
+  display:grid;
+  place-items:center;
+  padding:24px 16px;
+  background:radial-gradient(ellipse at 50% -35%,#145b42 0%,#104532 40%,#082b20 100%);
+}
+.login-card{
+  width:224px;
+  max-width:100%;
+  padding:18px 16px 19px;
+  border:0;
+  border-radius:15px;
+  background:#fff;
+  box-shadow:0 20px 45px #001c1726;
+}
+.login-brand{display:flex;justify-content:center;height:22px;margin:0 auto 7px}
+.login-brand img{width:98px;height:22px;object-fit:contain;filter:brightness(0) saturate(100%) invert(23%) sepia(37%) saturate(851%) hue-rotate(105deg) brightness(93%) contrast(94%)}
+.login-card h1{font-family:Georgia,'Times New Roman',serif;font-size:16px;line-height:20px;letter-spacing:-.3px;text-align:center;margin:0 0 4px;font-weight:700;color:#102d2f}
+.login-card>p{font-size:9px;line-height:15px;text-align:center;color:#76878c;margin:0}
+.login-card label{font-size:8px;line-height:12px;color:#163435;margin-top:14px;gap:3px;font-weight:600}
+.login-card .password-field input{height:28px;border:1px solid #d0ded8;border-radius:6px;padding:5px 28px 5px 8px;font-size:12px}
+.login-card .password-field button{right:7px;top:7px;padding:0;color:#81958c}
+.login-card .password-field button svg{width:13px;height:13px}
+.login-card .primary{height:28px;min-height:28px;width:100%;padding:5px 12px;margin:11px 0 0;border:0;border-radius:6px;background:linear-gradient(100deg,#0e4a36,#1a8054);color:white;font-family:Georgia,'Times New Roman',serif;font-size:10px;line-height:16px;font-weight:700}
+.login-card .primary:hover{filter:brightness(1.08)}
+.login-card .primary:active{filter:brightness(.96)}
+.login-card .back-link{display:block;text-align:center;margin-top:12px;font-family:Georgia,'Times New Roman',serif;font-size:9px;line-height:13px;text-decoration:underline;text-underline-offset:2px;color:#657d80}
+.login-card .error{font-size:10px;text-align:left;line-height:1.4;margin-top:7px;color:#b5483f}
+.login-card .error:empty{display:none}
+@media(prefers-reduced-motion:no-preference){.login-card{animation:login-arrive .3s ease-out}@keyframes login-arrive{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}}

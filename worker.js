@@ -43,7 +43,7 @@ export default {
   const d=await body(req);
   const a=await hash(clean(d.password,500)),b=await hash(env.DASHBOARD_PASSWORD);
   let diff=a.length^b.length;for(let i=0;i<a.length;i++)diff|=a.charCodeAt(i)^b.charCodeAt(i);
-  if(diff||d.username!=='admin')return json({error:'Incorrect username or password.'},401);
+  if(diff)return json({error:'Incorrect password.'},401);
   const token=Array.from(crypto.getRandomValues(new Uint8Array(32)),b=>b.toString(16).padStart(2,'0')).join('');
   const seconds=d.remember?2592000:43200;
   await env.DB.batch([env.DB.prepare('DELETE FROM sessions WHERE expires<?').bind(Date.now()),env.DB.prepare('INSERT INTO sessions(token,expires) VALUES (?,?)').bind(await hash(token),Date.now()+seconds*1000)]);

@@ -1,7 +1,19 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Leads | Elite Septic Service</title><link rel="stylesheet" href="/leads/dashboard.css"><script src="/leads/dashboard.js" defer></script></head>
 <body>
-<main id="login" class="login-shell" hidden><form id="login-form" class="login-card"><div class="brand-mark" data-icon="users"></div><h1>Elite Septic Service</h1><p>Sign in to manage your leads and bookings.</p><label>Username<input name="username" autocomplete="username" value="admin" required></label><label>Password<div class="password-field"><input name="password" type="password" autocomplete="current-password" required><button type="button" id="show-password" aria-label="Show password" data-icon="eye"></button></div></label><label class="check"><input type="checkbox" name="remember"> Keep me signed in for 30 days</label><p id="login-error" class="error" role="alert"></p><button class="primary" type="submit">Sign in <span data-icon="arrow"></span></button><small>Private workspace · Elite Septic Service</small></form></main>
+<main id="login" class="login-shell" hidden>
+  <form id="login-form" class="login-card">
+    <a class="login-brand" href="/" aria-label="Elite Septic Service home"><img src="/wp-content/uploads/2026/07/cropped-cropped-ChatGPT-Image-Jul-21-2026-01_38_48-AM-1-opt.webp" alt="Elite Septic"></a>
+    <h1>Welcome back</h1>
+    <p>Sign in to your bookings dashboard</p>
+    <label>Password
+      <div class="password-field"><input name="password" type="password" autocomplete="current-password" required aria-describedby="login-error"><button type="button" id="show-password" aria-label="Show password" data-icon="eye"></button></div>
+    </label>
+    <p id="login-error" class="error" role="alert"></p>
+    <button class="primary" type="submit">Sign in</button>
+    <a class="back-link" href="/">← Back to website</a>
+  </form>
+</main>
 <main id="app" class="workspace" hidden>
 <header class="topbar"><div><h1>Elite Septic Service</h1><p id="subtitle">Leads</p></div><nav aria-label="Dashboard navigation"><button data-tab="summary"><span data-icon="chart"></span>Summary</button><button data-tab="leads" class="active"><span data-icon="users"></span>Leads</button><button data-tab="bookings"><span data-icon="calendar"></span>Bookings</button><button data-tab="settings"><span data-icon="settings"></span>Settings</button></nav></header>
 <section class="stats" aria-label="Lead totals"><button class="stat mint" data-stat="new"><span class="stat-icon" data-icon="user"></span><strong id="new-count">0</strong><span>New Leads</span><small>Not yet called</small></button><button class="stat blue" data-stat="scheduled"><span class="stat-icon" data-icon="calendar"></span><strong id="scheduled-count">0</strong><span>Scheduled</span><small>Booked</small></button><button class="stat purple" data-stat="all"><span class="stat-icon" data-icon="chart"></span><strong id="total-count">0</strong><span>Total Leads</span><small>All time</small></button></section>

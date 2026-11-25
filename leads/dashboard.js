@@ -56,7 +56,7 @@ document.addEventListener('click',e=>{
  if(button.hasAttribute('data-new')||button.id==='add-lead')openLead();
  if(button.dataset.pipeline){tab('leads');state.filter='all';$('#status-filter').value=button.dataset.pipeline;render();}
 });
-$('#login-form').addEventListener('submit',async e=>{e.preventDefault();const b=e.submitter;b.disabled=true;$('#login-error').textContent='';try{const f=new FormData(e.target);await api('/api/login',{method:'POST',body:JSON.stringify({username:f.get('username'),password:f.get('password'),remember:f.has('remember')})});e.target.elements.password.value='';await load();}catch(err){$('#login-error').textContent=err.message;}finally{b.disabled=false;}});
+$('#login-form').addEventListener('submit',async e=>{e.preventDefault();const b=e.submitter;b.disabled=true;$('#login-error').textContent='';try{const f=new FormData(e.target);await api('/api/login',{method:'POST',body:JSON.stringify({password:f.get('password')})});e.target.elements.password.value='';await load();}catch(err){$('#login-error').textContent=err.message;}finally{b.disabled=false;}});
 $('#show-password').onclick=()=>{const p=$('#login-form').elements.password;p.type=p.type==='password'?'text':'password';$('#show-password').setAttribute('aria-label',p.type==='password'?'Show password':'Hide password');};
 $('#search').oninput=render;$('#clear-search').onclick=()=>{$('#search').value='';render();};
 $('#filter-toggle').onclick=()=>{const panel=$('#more-filters');panel.hidden=!panel.hidden;$('#filter-toggle').setAttribute('aria-expanded',String(!panel.hidden));};
