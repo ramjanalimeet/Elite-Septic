@@ -47,7 +47,8 @@ def get_page(url: str) -> tuple[str, set[str]]:
         html = html.replace('</body>', '<script src="/mirror.js" defer></script></body>')
     path = local_path(url) / "index.html"
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(html)
+    if not (urlparse(url).path == "/" and path.exists() and "data-elite-home" in path.read_text()):
+        path.write_text(html)
     return url, assets
 
 
