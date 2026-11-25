@@ -1,0 +1,20 @@
+/* A slightly wider, more compact view of the public website on desktop. */
+/* Contain the booking form's hidden radio controls during scaling. */
+.esb__day,
+.esb__pick,
+.esb__win {
+  position: relative;
+}
+
+@media screen and (min-width: 1025px) {
+  html {
+    zoom: 0.9;
+  }
+}
+
+/* Keep mobile form fields and touch targets at their intended size. */
+@media screen and (max-width: 1024px), print {
+  html {
+    zoom: 1;
+  }
+}
