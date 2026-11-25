@@ -55,6 +55,6 @@ npx wrangler d1 migrations apply elite-septic-leads --local
 npm run dev
 ```
 
-Set `DASHBOARD_PASSWORD` in an ignored `.dev.vars` file for local sign-in. Sign-in uses only the dashboard password. For production, configure `DASHBOARD_PASSWORD` as a Cloudflare Worker secret and apply D1 migrations with `npx wrangler d1 migrations apply elite-septic-leads --remote` before deployment. Never commit credentials. The D1 binding is declared in `wrangler.jsonc`.
+Set `DASHBOARD_PASSWORD` in an ignored `.dev.vars` file for local sign-in. The username is `admin`. For production, configure `DASHBOARD_PASSWORD` as a Cloudflare Worker secret and apply D1 migrations with `npx wrangler d1 migrations apply elite-septic-leads --remote` before deployment. Never commit credentials. The D1 binding is declared in `wrangler.jsonc`.
 
 Sessions use a random token in a secure, HttpOnly, SameSite cookie. API mutations require a matching origin; login and public form submissions are rate limited. Public requests are saved as new leads; a preferred booking date is a request until the administrator marks it Scheduled.
