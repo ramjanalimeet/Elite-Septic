@@ -1,4 +1,4 @@
-import { cp, mkdir, readdir, readFile, writeFile, rm, stat } from 'node:fs/promises';
+import { cp, mkdir, readdir, rm, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -25,13 +25,6 @@ async function validate(directory) {
     const filename = path.join(directory, entry.name);
     if (entry.isDirectory()) await validate(filename);
     else {
-      const relative = path.relative(output, filename);
-      if (entry.name === 'index.html' && !relative.startsWith('leads' + path.sep)) {
-        const page = await readFile(filename, 'utf8');
-        if (!page.includes('href="/assets/site-scale.css"')) {
-          await writeFile(filename, page.replace('</head>', '<link rel="stylesheet" href="/assets/site-scale.css"></head>'));
-        }
-      }
       if ((await stat(filename)).size > 25 * 1024 * 1024) {
         throw new Error(`Cloudflare's 25 MiB asset limit exceeded: ${filename}`);
       }
