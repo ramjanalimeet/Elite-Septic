@@ -1,6 +1,6 @@
 # Elite Septic website copy
 
-This repository contains the Elite Septic public website and protected lead dashboard. The homepage is an original responsive design. Service and location pages, blog posts, images, styles, and scripts retain the original website content and URL paths.
+This repository contains a static copy of the public pages at [elitesepticservice.net](https://elitesepticservice.net/), including service and location pages, blog posts, images, styles, and scripts. The pages are saved at their original URL paths.
 
 ## Run locally
 
@@ -58,12 +58,3 @@ npm run dev
 Set `DASHBOARD_PASSWORD` in an ignored `.dev.vars` file for local sign-in. The username is `admin`. For production, configure `DASHBOARD_PASSWORD` as a Cloudflare Worker secret and apply D1 migrations with `npx wrangler d1 migrations apply elite-septic-leads --remote` before deployment. Never commit credentials. The D1 binding is declared in `wrangler.jsonc`.
 
 Sessions use a random token in a secure, HttpOnly, SameSite cookie. API mutations require a matching origin; login and public form submissions are rate limited. Public requests are saved as new leads; a preferred booking date is a request until the administrator marks it Scheduled.
-
-
-## Public website design
-
-The custom homepage is `index.html`; shared public styles and interactions are in `public/site.css` and `public/site.js`. The layout uses Elite’s existing photographs, forest green, warm cream, and muted gold, with service category filters, a searchable coverage list, keyboard-accessible navigation, FAQs, and connected quote forms.
-
-`npm run build` applies the shared public stylesheet and behavior to existing content pages. It excludes `/leads/`, preserving the dashboard design. The booking calendar generates current dates in the East Texas business timezone (`America/Chicago`) and treats all times as requests pending confirmation. It does not advertise invented availability counts.
-
-The mirror refresh script preserves the custom homepage. The build also removes the legacy cached-booking script from refreshed booking pages, so old date and availability logic is not reintroduced. Quote and booking submissions continue to use the existing Worker API and D1 inbox.

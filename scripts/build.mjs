@@ -1,11 +1,11 @@
-import { cp, mkdir, readdir, readFile, writeFile, rm, stat } from 'node:fs/promises';
+import { cp, mkdir, readdir, rm, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const output = path.join(root, 'dist');
 const entries = [
-  'index.html', 'mirror.js', 'public', 'leads', 'about', 'accessibility-statement', 'blog',
+  'index.html', 'mirror.js', 'leads', 'about', 'accessibility-statement', 'blog',
   'bookings', 'contact', 'cookie-policy', 'jasper-tx', 'lufkin-tx',
   'privacy-policy', 'service-areas', 'services', 'terms-of-use',
   'wp-content', 'wp-includes'
@@ -25,18 +25,6 @@ async function validate(directory) {
     const filename = path.join(directory, entry.name);
     if (entry.isDirectory()) await validate(filename);
     else {
-      if (entry.name === 'index.html' && !path.relative(output, filename).startsWith('leads' + path.sep)) {
-        let page = await readFile(filename, 'utf8');
-        // Refreshed WordPress pages must not restore cached slot counts or dates.
-        if (path.relative(output, filename) === path.join('bookings', 'index.html')) {
-          page = page.replace(/(<script\b[^>]*>)([\s\S]*?)(<\/script>)/gi, (match, open, script, close) =>
-            script.includes('var f=document.querySelector(".esb__form")') ? open + '/* Booking controls are managed by /public/site.js. */' + close : match);
-        }
-        if (!page.includes('href="/public/site.css"')) page = page.replace('</head>', '<link rel="stylesheet" href="/public/site.css"></head>');
-        if (!page.includes('src="/public/site.js"')) page = page.replace('</body>', '<script src="/public/site.js" defer></script></body>');
-        page = page.replace(/<body([^>]*)>/i, (match, attrs) => attrs.includes('class=') ? '<body' + attrs.replace(/class=(["'])/, 'class=$1elite-public ') + '>' : '<body class="elite-public"' + attrs + '>');
-        await writeFile(filename, page);
-      }
       if ((await stat(filename)).size > 25 * 1024 * 1024) {
         throw new Error(`Cloudflare's 25 MiB asset limit exceeded: ${filename}`);
       }
