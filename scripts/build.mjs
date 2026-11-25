@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const output = path.join(root, 'dist');
 const entries = [
-  'index.html', 'mirror.js', 'assets', 'leads', 'about', 'accessibility-statement', 'blog',
+  'index.html', 'mirror.js', 'leads', 'about', 'accessibility-statement', 'blog',
   'bookings', 'contact', 'cookie-policy', 'jasper-tx', 'lufkin-tx',
   'privacy-policy', 'service-areas', 'services', 'terms-of-use',
   'wp-content', 'wp-includes'
